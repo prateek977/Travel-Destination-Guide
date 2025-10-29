@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+      <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f5f7fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a961, #e8d4a0, #c9a961);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .city-section {
+            background: white;
+            margin: 3rem auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid #c9a961;
+        }
+
+        .city-header {
+            text-align: center;
+            padding: 3rem 3rem 2rem 3rem;
+            border-bottom: 1px solid #e1e8ed;
+            background: #fafbfc;
+        }
+
+        .city-header h2 {
+            font-size: 2.8rem;
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .city-header .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-card {
+            background: white;
+            color: #2c3e50;
+            padding: 2rem;
+            border-right: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-card:hover {
+            background-color: #fafbfc;
+        }
+
+        .info-card h3 {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            color: #7f8c8d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin: 0;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            background: #ecf0f1;
+            border: 1px solid #e1e8ed;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            filter: brightness(0.95);
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .description {
+            padding: 3rem;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .description h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 1.9rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #c9a961;
+            display: inline-block;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #34495e;
+        }
+
+        .highlights {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem;
+            margin: 0;
+        }
+
+        .highlights h3 {
+            font-size: 1.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #c9a961;
+            padding-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            column-gap: 3rem;
+        }
+
+        .highlights li {
+            padding: 0.7rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            break-inside: avoid;
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #c9a961;
+            font-size: 1.5rem;
+        }
+
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-section {
+            background: white;
+            padding: 3rem;
+            border-right: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #c9a961;
+            letter-spacing: 0.5px;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #34495e;
+            line-height: 1.7;
+        }
+
+        .info-section li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1e3c72;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 0;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+    
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            ✈️ Wanderlust Guide
+        </div>
+        <ul class="nav-links">
+            <li><a href="/travel/index.html#home">Home</a></li>
+            <li><a href="/travel/index.html#destinations">Destinations</a></li>
+            <li><a href="/travel/index.html#budget-tips">Budget Tips</a></li>
+            <li><a href="/travel/index.html#journal">Travel Journal</a></li>
+            <li><a href="/travel/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>🏛️ Lisbon, Portugal</h1>
+        <p>The City of Seven Hills and Eternal Light</p>
+    </header>
+
+    <div class="container">
+        <div class="city-section">
+            <div class="city-header">
+                <h2>Welcome to Lisbon</h2>
+                <p class="subtitle">Lisboa - Where History Meets Atlantic Breeze</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📍 Location</h3>
+                    <p>Western Iberian Peninsula, Portugal</p>
+                </div>
+                <div class="info-card">
+                    <h3>👥 Population</h3>
+                    <p>547,733 (2.8 million metro area)</p>
+                </div>
+                <div class="info-card">
+                    <h3>🌐 Area</h3>
+                    <p>100.05 km² (38.6 sq mi)</p>
+                </div>
+                <div class="info-card">
+                    <h3>🗣️ Language</h3>
+                    <p>Portuguese</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Currency</h3>
+                    <p>Euro (€)</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Time Zone</h3>
+                    <p>Western European Time (WET)</p>
+                </div>
+            </div>
+
+            <div class="description">
+                <h3>About Lisbon</h3>
+                <p>Lisbon, Portugal's captivating capital, is one of Europe's most charismatic and vibrant cities. Built across seven hills overlooking the Tagus River and the Atlantic Ocean, this ancient city combines centuries of history with a modern, cosmopolitan spirit. Its distinctive character is woven from colorful azulejo tiles, vintage yellow trams climbing steep cobblestone streets, and the haunting melodies of fado music drifting from traditional taverns.</p>
+                <p>As one of the oldest cities in Western Europe, predating other European capitals like London, Paris, and Rome by hundreds of years, Lisbon boasts a rich maritime heritage. During the Age of Discovery in the 15th and 16th centuries, Portuguese explorers set sail from Lisbon's shores to chart unknown territories, establishing the city as a gateway between Europe and the rest of the world. This legacy is still visible in the magnificent Manueline architecture of monuments like the Belém Tower and Jerónimos Monastery.</p>
+                <p>Today's Lisbon is a city of contrasts where medieval neighborhoods coexist with sleek modern architecture, where traditional Portuguese culture thrives alongside contemporary art scenes and innovative cuisine. The city's seven hills offer breathtaking viewpoints (miradouros) at every turn, rewarding those who wander its labyrinthine streets with panoramic vistas of terracotta rooftops, the shimmering Tagus River, and the iconic 25 de Abril Bridge spanning the water.</p>
+                <p>What makes Lisbon truly special is its authentic atmosphere and relatively affordable charm compared to other Western European capitals. The city maintains a relaxed, welcoming vibe where locals still gather in neighborhood cafés, traditional markets bustle with fresh produce, and life moves at a pleasantly unhurried pace. Whether you're savoring fresh seafood at a riverside restaurant, exploring the bohemian Bairro Alto district, or simply soaking in the golden afternoon light that bathes the city, Lisbon captivates with its timeless beauty and genuine warmth.</p>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1555881400-74d7acaacd8b?w=800" alt="Lisbon tram">
+                    <div class="photo-caption">Iconic yellow tram 28 in Alfama district</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1588622504439-78c52fc5d0d0?w=800" alt="Belém Tower">
+                    <div class="photo-caption">Belém Tower - UNESCO World Heritage Site</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=800" alt="Alfama">
+                    <div class="photo-caption">Colorful buildings in historic Alfama neighborhood</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1543731068-391a6dd08b8e?w=800" alt="Commerce Square">
+                    <div class="photo-caption">Praça do Comércio overlooking Tagus River</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1590955256979-f14c11c27e7d?w=800" alt="Jerónimos Monastery">
+                    <div class="photo-caption">Jerónimos Monastery - Manueline masterpiece</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1599930113854-d6d7fd521f10?w=800" alt="São Jorge Castle">
+                    <div class="photo-caption">São Jorge Castle with panoramic city views</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1549055148-6cabf29b5beb?w=800" alt="Lisbon sunset">
+                    <div class="photo-caption">Golden sunset over Lisbon's rooftops</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=800" alt="Azulejos">
+                    <div class="photo-caption">Traditional azulejo tile facades</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1616162316928-aa5d424a0c5f?w=800" alt="25 de Abril Bridge">
+                    <div class="photo-caption">25 de Abril Bridge spanning the Tagus</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1562095241-8c6714fd4178?w=800" alt="Bairro Alto">
+                    <div class="photo-caption">Vibrant streets of Bairro Alto at twilight</div>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <h3>Top Attractions & Must-See Landmarks</h3>
+                <ul>
+                    <li>Belém Tower (Torre de Belém) - 16th-century fortified tower and UNESCO site</li>
+                    <li>Jerónimos Monastery - Stunning Manueline architecture and maritime history</li>
+                    <li>São Jorge Castle - Moorish castle with spectacular city panoramas</li>
+                    <li>Alfama District - Oldest neighborhood with narrow streets and fado houses</li>
+                    <li>Praça do Comércio - Grand waterfront square with triumphal arch</li>
+                    <li>Elevador de Santa Justa - Neo-Gothic lift offering rooftop views</li>
+                    <li>LX Factory - Creative hub in converted industrial space</li>
+                    <li>Time Out Market - Gourmet food hall with top chefs</li>
+                    <li>Oceanário de Lisboa - One of Europe's finest aquariums</li>
+                    <li>Pastéis de Belém - Historic bakery of the famous custard tarts</li>
+                    <li>Miradouro da Senhora do Monte - Highest viewpoint in Lisbon</li>
+                    <li>National Tile Museum - Celebrating Portugal's azulejo tradition</li>
+                </ul>
+            </div>
+
+            <div class="additional-info">
+                <div class="info-section">
+                    <h3>🍽️ Culinary Delights</h3>
+                    <ul>
+                        <li>Pastéis de Nata - Iconic Portuguese custard tarts</li>
+                        <li>Bacalhau - Salted cod prepared in countless ways</li>
+                        <li>Seafood rice and grilled sardines</li>
+                        <li>Bifana - Traditional pork sandwich</li>
+                        <li>Caldo Verde - Comforting Portuguese green soup</li>
+                        <li>Ginjinha - Cherry liqueur served in chocolate cups</li>
+                        <li>Port wine and Vinho Verde from nearby regions</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🎵 Culture & Nightlife</h3>
+                    <ul>
+                        <li>Fado music in Alfama and Bairro Alto</li>
+                        <li>MAAT - Museum of Art, Architecture and Technology</li>
+                        <li>Gulbenkian Museum - World-class art collection</li>
+                        <li>Bairro Alto's bar-hopping scene</li>
+                        <li>Pink Street entertainment district</li>
+                        <li>Lux Frágil - Famous riverside nightclub</li>
+                        <li>Street art tours in trendy neighborhoods</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🏖️ Day Trip Destinations</h3>
+                    <ul>
+                        <li>Sintra - Fairy-tale palaces and castles</li>
+                        <li>Cascais - Charming coastal resort town</li>
+                        <li>Cabo da Roca - Europe's westernmost point</li>
+                        <li>Óbidos - Medieval walled village</li>
+                        <li>Setúbal - Wine region and beaches</li>
+                        <li>Évora - Roman ruins and historic center</li>
+                        <li>Arrábida Natural Park - Pristine beaches</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🚇 Getting Around</h3>
+                    <ul>
+                        <li>Metro - Four lines covering main attractions</li>
+                        <li>Historic trams (especially Tram 28)</li>
+                        <li>Funiculars and the Santa Justa Elevator</li>
+                        <li>Buses covering all neighborhoods</li>
+                        <li>Ferries across the Tagus River</li>
+                        <li>Electric tuk-tuks for hills</li>
+                        <li>Lisboa Card for unlimited transport</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="description">
+                <h3>Best Time to Visit</h3>
+                <p><strong>Spring (March-May):</strong> Ideal weather with temperatures between 15-22°C, blooming jacaranda trees painting the streets purple, and fewer crowds than summer. Perfect for walking tours and outdoor dining. Easter brings special celebrations and processions.</p>
+                <p><strong>Summer (June-August):</strong> Warm and sunny with temperatures reaching 28°C. Peak tourist season with vibrant festivals including Santo António in June. Beaches are easily accessible, and outdoor cafés buzz with activity. Book accommodations well in advance.</p>
+                <p><strong>Fall (September-November):</strong> Pleasant temperatures around 20-25°C, golden light perfect for photography, and harvest season in nearby wine regions. September offers summer warmth with fewer tourists, making it an excellent choice for travelers.</p>
+                <p><strong>Winter (December-February):</strong> Mild compared to Northern Europe (10-15°C) but can be rainy. Christmas decorations add charm, hotels offer better rates, and attractions are less crowded. Indoor museums and cozy fado houses become especially appealing.</p>
+            </div>
+
+            <div class="description">
+                <h3>Interesting Facts About Lisbon</h3>
+                <p>🏛️ Lisbon is older than Rome by about 400 years, with settlements dating back to 1200 BC when it was inhabited by Pre-Celtic tribes.</p>
+                <p>🌊 The devastating earthquake of 1755, one of history's deadliest, destroyed much of Lisbon and led to Europe's first seismically protected buildings during reconstruction.</p>
+                <p>🚃 Tram 28 is not just tourist transport but a working tram line locals use daily, navigating impossibly narrow streets that modern vehicles cannot access.</p>
+                <p>🎨 Lisbon has the oldest bookstore still operating in the world, Livraria Bertrand, founded in 1732 and recognized by Guinness World Records.</p>
+                <p>🌉 The 25 de Abril Bridge was designed by the same company that built San Francisco's Golden Gate Bridge and bears a striking resemblance to its American cousin.</p>
+                <p>🎵 Fado music, Lisbon's melancholic traditional music genre, was recognized by UNESCO as Intangible Cultural Heritage of Humanity in 2011.</p>
+                <p>☀️ Lisbon enjoys around 300 days of sunshine per year, making it one of Europe's sunniest capitals and earning its nickname "The City of Light."</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Wanderlust Travel Guide</p>
+        <p>Saudade - The Soul of Portugal</p>
+    </footer>
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>

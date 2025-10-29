@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f5f7fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a961, #e8d4a0, #c9a961);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .city-section {
+            background: white;
+            margin: 3rem auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid #c9a961;
+        }
+
+        .city-header {
+            text-align: center;
+            padding: 3rem 3rem 2rem 3rem;
+            border-bottom: 1px solid #e1e8ed;
+            background: #fafbfc;
+        }
+
+        .city-header h2 {
+            font-size: 2.8rem;
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .city-header .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-card {
+            background: white;
+            color: #2c3e50;
+            padding: 2rem;
+            border-right: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-card:hover {
+            background-color: #fafbfc;
+        }
+
+        .info-card h3 {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            color: #7f8c8d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin: 0;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            background: #ecf0f1;
+            border: 1px solid #e1e8ed;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            filter: brightness(0.95);
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .description {
+            padding: 3rem;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .description h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 1.9rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #c9a961;
+            display: inline-block;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #34495e;
+        }
+
+        .highlights {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem;
+            margin: 0;
+        }
+
+        .highlights h3 {
+            font-size: 1.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #c9a961;
+            padding-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            column-gap: 3rem;
+        }
+
+        .highlights li {
+            padding: 0.7rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            break-inside: avoid;
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #c9a961;
+            font-size: 1.5rem;
+        }
+
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-section {
+            background: white;
+            padding: 3rem;
+            border-right: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #c9a961;
+            letter-spacing: 0.5px;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #34495e;
+            line-height: 1.7;
+        }
+
+        .info-section li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1e3c72;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 0;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            ✈️ Wanderlust Guide
+        </div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#budget-tips">Budget Tips</a></li>
+            <li><a href="#journal">Travel Journal</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>⛩️ Kyoto, Japan</h1>
+        <p>The Ancient Capital of Ten Thousand Shrines</p>
+    </header>
+
+    <div class="container">
+        <div class="city-section">
+            <div class="city-header">
+                <h2>Welcome to Kyoto</h2>
+                <p class="subtitle">京都 - Where Tradition Lives in Every Season</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📍 Location</h3>
+                    <p>Kansai Region, Honshu Island, Japan</p>
+                </div>
+                <div class="info-card">
+                    <h3>👥 Population</h3>
+                    <p>1.46 million (2.69 million metro area)</p>
+                </div>
+                <div class="info-card">
+                    <h3>🌐 Area</h3>
+                    <p>827.8 km² (319.6 sq mi)</p>
+                </div>
+                <div class="info-card">
+                    <h3>🗣️ Language</h3>
+                    <p>Japanese</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Currency</h3>
+                    <p>Japanese Yen (¥)</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Time Zone</h3>
+                    <p>Japan Standard Time (JST)</p>
+                </div>
+            </div>
+
+            <div class="description">
+                <h3>About Kyoto</h3>
+                <p>Kyoto, Japan's ancient imperial capital for over a millennium, stands as the living heart of Japanese culture and tradition. From 794 to 1868, this magnificent city served as the seat of the Emperor and the political center of Japan, accumulating an unparalleled wealth of temples, shrines, gardens, and palaces. Today, Kyoto remains the spiritual and cultural soul of Japan, a place where the past is not merely preserved but actively lived and celebrated.</p>
+                <p>The city is home to an astounding 17 UNESCO World Heritage Sites, over 2,000 temples and shrines, and countless traditional wooden machiya townhouses. Walking through Kyoto's historic districts like Gion or Higashiyama feels like stepping back in time, with narrow lanes lined with traditional architecture, the occasional glimpse of a geisha hurrying to an appointment, and the gentle sound of temple bells echoing through the air. The famous Fushimi Inari Shrine with its thousands of vermillion torii gates, the shimmering Golden Pavilion (Kinkaku-ji), and the serene rock garden of Ryoan-ji represent just a fraction of Kyoto's extraordinary cultural treasures.</p>
+                <p>What makes Kyoto truly special is how seamlessly it blends ancient traditions with modern life. Tea ceremonies are still performed daily, kaiseki cuisine represents the pinnacle of Japanese culinary art, and traditional crafts like kimono-making, pottery, and bamboo weaving continue to thrive. The city's seasonal celebrations are legendary, from the ethereal beauty of spring cherry blossoms to the fiery autumn maples, from summer firefly watching to winter's snow-dusted temple gardens.</p>
+                <p>Beyond its historical significance, Kyoto is a city of subtle elegance and refined aesthetics. The concept of wabi-sabi, finding beauty in imperfection and impermanence, permeates everything from minimalist Zen gardens to the rustic charm of traditional teahouses. This philosophy, combined with omotenashi (Japanese hospitality), creates an atmosphere of tranquility and mindfulness that offers visitors not just sights to see, but a deeper understanding of Japanese culture and a transformative experience that lingers long after departure.</p>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800" alt="Fushimi Inari">
+                    <div class="photo-caption">Fushimi Inari Shrine's iconic torii gate pathway</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1478436127897-769e1b3f0f36?w=800" alt="Kinkaku-ji">
+                    <div class="photo-caption">Kinkaku-ji (Golden Pavilion) reflecting in pond</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1545569341-9eb8b30979d9?w=800" alt="Bamboo Forest">
+                    <div class="photo-caption">Arashiyama Bamboo Grove - Tranquil pathway</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1480796927426-f609979314bd?w=800" alt="Geisha District">
+                    <div class="photo-caption">Historic streets of Gion geisha district</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800" alt="Kiyomizu-dera">
+                    <div class="photo-caption">Kiyomizu-dera Temple with panoramic views</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1555217851-6141535bd771?w=800" alt="Cherry Blossoms">
+                    <div class="photo-caption">Cherry blossom season at Philosopher's Path</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1578469550956-0e16b69c6a3d?w=800" alt="Zen Garden">
+                    <div class="photo-caption">Zen rock garden at Ryoan-ji Temple</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1526481280693-3bfa7568e0f3?w=800" alt="Gion at Night">
+                    <div class="photo-caption">Traditional lanterns illuminating Gion streets</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1590559899731-a382839e5549?w=800" alt="Autumn Leaves">
+                    <div class="photo-caption">Autumn foliage at historic temple grounds</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://images.unsplash.com/photo-1492571350019-22de08371fd3?w=800" alt="Nijo Castle">
+                    <div class="photo-caption">Nijo Castle - Former residence of shoguns</div>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <h3>Top Attractions & Must-See Landmarks</h3>
+                <ul>
+                    <li>Fushimi Inari Shrine - Famous for thousands of vermillion torii gates</li>
+                    <li>Kinkaku-ji (Golden Pavilion) - Gold-leaf covered Zen temple</li>
+                    <li>Arashiyama Bamboo Grove - Enchanting natural bamboo forest</li>
+                    <li>Kiyomizu-dera - Historic temple with wooden stage overlooking city</li>
+                    <li>Gion District - Traditional geisha quarter with preserved architecture</li>
+                    <li>Ryoan-ji Temple - Famous for minimalist Zen rock garden</li>
+                    <li>Philosopher's Path - Cherry blossom-lined canal walkway</li>
+                    <li>Nijo Castle - UNESCO site with nightingale floors</li>
+                    <li>Ginkaku-ji (Silver Pavilion) - Elegant Zen temple and gardens</li>
+                    <li>Nishiki Market - Historic food market spanning five blocks</li>
+                    <li>Tofuku-ji Temple - Renowned for spectacular autumn colors</li>
+                    <li>Imperial Palace - Former residence of Japanese emperors</li>
+                </ul>
+            </div>
+
+            <div class="additional-info">
+                <div class="info-section">
+                    <h3>🍽️ Culinary Excellence</h3>
+                    <ul>
+                        <li>Kaiseki - Multi-course traditional haute cuisine</li>
+                        <li>Matcha sweets and traditional tea ceremonies</li>
+                        <li>Yudofu - Delicate boiled tofu specialty</li>
+                        <li>Kyoto-style sushi and seasonal vegetables</li>
+                        <li>Wagashi - Beautiful traditional Japanese sweets</li>
+                        <li>Kyo-ryori - Refined Kyoto-style cooking</li>
+                        <li>Sake tasting at local breweries</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🎭 Traditional Culture</h3>
+                    <ul>
+                        <li>Geisha performances and maiko dances</li>
+                        <li>Tea ceremony experiences at historic teahouses</li>
+                        <li>Traditional craft workshops (pottery, textiles)</li>
+                        <li>Kimono rental and photo sessions</li>
+                        <li>Noh theater and Kabuki performances</li>
+                        <li>Temple meditation and zen experiences</li>
+                        <li>Seasonal festivals throughout the year</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🏞️ Gardens & Nature</h3>
+                    <ul>
+                        <li>Arashiyama Monkey Park with mountain views</li>
+                        <li>Philosopher's Path scenic walking route</li>
+                        <li>Temple gardens designed by masters</li>
+                        <li>Mount Hiei for hiking and temples</li>
+                        <li>Kamogawa River promenade</li>
+                        <li>Cherry blossom viewing spots citywide</li>
+                        <li>Autumn foliage at countless temples</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🚇 Getting Around</h3>
+                    <ul>
+                        <li>Subway - Two main lines (Karasuma, Tozai)</li>
+                        <li>City buses reaching all major attractions</li>
+                        <li>JR trains connecting to other cities</li>
+                        <li>Bicycle rentals - popular and convenient</li>
+                        <li>Private Keihan and Hankyu railway lines</li>
+                        <li>Taxis available but more expensive</li>
+                        <li>Walking - many sites clustered together</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="description">
+                <h3>Best Time to Visit</h3>
+                <p><strong>Spring (March-May):</strong> Peak season for cherry blossoms (sakura), typically blooming late March to early April. The city transforms into a pink paradise with hanami (flower viewing) parties in parks and temple grounds. Temperatures range from 10-20°C. Book accommodations months in advance as this is the busiest period.</p>
+                <p><strong>Summer (June-August):</strong> Hot and humid with temperatures reaching 30-35°C. Early June brings rainy season, but July and August offer vibrant festivals including Gion Matsuri, one of Japan's most famous festivals. Early mornings and evenings are best for sightseeing to avoid the intense midday heat.</p>
+                <p><strong>Autumn (September-November):</strong> Spectacular fall foliage season, especially mid-November to early December. Temperatures cool to comfortable 15-25°C, and temples like Tofuku-ji and Eikando become stunning displays of red and gold. Second most popular season after spring, with equally breathtaking scenery.</p>
+                <p><strong>Winter (December-February):</strong> Cold but generally dry with occasional snow creating magical temple scenes. Temperatures range from 0-10°C. Fewer tourists mean peaceful temple visits, and you can enjoy hot springs (onsen) nearby. New Year's celebrations at temples are special experiences with traditional ceremonies.</p>
+            </div>
+
+            <div class="description">
+                <h3>Interesting Facts About Kyoto</h3>
+                <p>⛩️ Kyoto was deliberately spared from bombing during World War II due to its immense cultural significance, preserving its thousands of historic structures.</p>
+                <p>🍵 The tea ceremony (sado) reached its highest form in Kyoto, and the city remains the center of Japanese tea culture with numerous historic teahouses.</p>
+                <p>👘 Kyoto is home to the last remaining geisha districts in Japan, where apprentice geisha (maiko) still train in traditional arts for years before becoming full geisha.</p>
+                <p>🏯 The city was laid out in a grid pattern modeled after the ancient Chinese capital of Chang'an (modern Xi'an), making it relatively easy to navigate despite its age.</p>
+                <p>🌸 Kyoto has over 400 Shinto shrines and 1,600 Buddhist temples, including 17 UNESCO World Heritage Sites - more than any other city in Japan.</p>
+                <p>🎨 Traditional crafts like Kyo-yuzen (kimono dyeing), Kiyomizu-yaki (pottery), and bamboo crafts have been perfected in Kyoto over centuries and are still practiced today.</p>
+                <p>🔔 The Philosopher's Path got its name from philosopher Nishida Kitaro, who meditated daily while walking this route between temples, inspiring its contemplative atmosphere.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Wanderlust Travel Guide</p>
+        <p>和 (Wa) - Harmony and Balance</p>
+    </footer>
+</body>
+</html>

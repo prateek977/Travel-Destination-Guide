@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', 'Times New Roman', serif;
+            line-height: 1.8;
+            color: #2c3e50;
+            background: #f5f7fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #c9a961, #e8d4a0, #c9a961);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.2rem;
+            opacity: 0.95;
+            font-style: italic;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .city-section {
+            background: white;
+            margin: 3rem auto;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+            border-top: 3px solid #c9a961;
+        }
+
+        .city-header {
+            text-align: center;
+            padding: 3rem 3rem 2rem 3rem;
+            border-bottom: 1px solid #e1e8ed;
+            background: #fafbfc;
+        }
+
+        .city-header h2 {
+            font-size: 2.8rem;
+            color: #1e3c72;
+            margin-bottom: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+        }
+
+        .city-header .subtitle {
+            font-size: 1.1rem;
+            color: #7f8c8d;
+            font-style: italic;
+            font-weight: 300;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-card {
+            background: white;
+            color: #2c3e50;
+            padding: 2rem;
+            border-right: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+            transition: background-color 0.3s ease;
+        }
+
+        .info-card:hover {
+            background-color: #fafbfc;
+        }
+
+        .info-card h3 {
+            font-size: 0.85rem;
+            margin-bottom: 0.8rem;
+            color: #7f8c8d;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+        }
+
+        .info-card p {
+            font-size: 1.1rem;
+            color: #1e3c72;
+            font-weight: 500;
+        }
+
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin: 0;
+        }
+
+        .photo-card {
+            position: relative;
+            overflow: hidden;
+            height: 280px;
+            background: #ecf0f1;
+            border: 1px solid #e1e8ed;
+        }
+
+        .photo-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+            filter: brightness(0.95);
+        }
+
+        .photo-card:hover img {
+            transform: scale(1.08);
+            filter: brightness(1);
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(30, 60, 114, 0.9);
+            color: white;
+            padding: 1rem 1.5rem;
+            font-size: 0.9rem;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .description {
+            padding: 3rem;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .description h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 1.9rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #c9a961;
+            display: inline-block;
+        }
+
+        .description p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+            font-size: 1.05rem;
+            line-height: 1.9;
+            color: #34495e;
+        }
+
+        .highlights {
+            background: #1e3c72;
+            color: white;
+            padding: 3rem;
+            margin: 0;
+        }
+
+        .highlights h3 {
+            font-size: 1.9rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            font-weight: 400;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #c9a961;
+            padding-bottom: 1rem;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .highlights ul {
+            list-style: none;
+            padding: 0;
+            columns: 2;
+            column-gap: 3rem;
+        }
+
+        .highlights li {
+            padding: 0.7rem 0;
+            padding-left: 1.8rem;
+            position: relative;
+            break-inside: avoid;
+            font-size: 1.02rem;
+            line-height: 1.7;
+        }
+
+        .highlights li:before {
+            content: "▪";
+            position: absolute;
+            left: 0;
+            color: #c9a961;
+            font-size: 1.5rem;
+        }
+
+        .additional-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 0;
+            margin: 0;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-section {
+            background: white;
+            padding: 3rem;
+            border-right: 1px solid #e1e8ed;
+            border-bottom: 1px solid #e1e8ed;
+        }
+
+        .info-section h3 {
+            color: #1e3c72;
+            margin-bottom: 1.5rem;
+            font-size: 1.4rem;
+            font-weight: 500;
+            padding-bottom: 0.8rem;
+            border-bottom: 2px solid #c9a961;
+            letter-spacing: 0.5px;
+        }
+
+        .info-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-section li {
+            padding: 0.6rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #34495e;
+            line-height: 1.7;
+        }
+
+        .info-section li:before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: #1e3c72;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 0;
+            font-family: 'Segoe UI', sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        footer p {
+            margin: 0.5rem 0;
+            font-size: 0.95rem;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            ✈️ Wanderlust Guide
+        </div>
+        <ul class="nav-links">
+            <li><a href="/travel/index.html#home">Home</a></li>
+            <li><a href="/travel/index.html#destinations">Destinations</a></li>
+            <li><a href="/travel/index.html#budget-tips">Budget Tips</a></li>
+            <li><a href="/travel/index.html#journal">Travel Journal</a></li>
+            <li><a href="/travel/index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+    <header>
+        <h1>🌴 Bali, Indonesia</h1>
+        <p>The Island of Gods and Spiritual Paradise</p>
+    </header>
+
+    <div class="container">
+        <div class="city-section">
+            <div class="city-header">
+                <h2>Welcome to Bali</h2>
+                <p class="subtitle">Pulau Dewata - Where Heaven Meets Earth</p>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <h3>📍 Location</h3>
+                    <p>Lesser Sunda Islands, Indonesia</p>
+                </div>
+                <div class="info-card">
+                    <h3>👥 Population</h3>
+                    <p>4.3 million residents</p>
+                </div>
+                <div class="info-card">
+                    <h3>🌐 Area</h3>
+                    <p>5,780 km² (2,230 sq mi)</p>
+                </div>
+                <div class="info-card">
+                    <h3>🗣️ Language</h3>
+                    <p>Indonesian, Balinese</p>
+                </div>
+                <div class="info-card">
+                    <h3>💰 Currency</h3>
+                    <p>Indonesian Rupiah (IDR)</p>
+                </div>
+                <div class="info-card">
+                    <h3>⏰ Time Zone</h3>
+                    <p>Central Indonesia Time (WITA)</p>
+                </div>
+            </div>
+
+            <div class="description">
+                <h3>About Bali</h3>
+                <p>Bali, the famed Island of the Gods, is Indonesia's most iconic destination and one of the world's most enchanting tropical paradises. This small island province combines stunning natural beauty with a deeply spiritual culture, creating an atmosphere unlike anywhere else on Earth. From terraced rice paddies that cascade down hillsides to pristine beaches kissed by turquoise waters, Bali offers a visual feast at every turn.</p>
+                <p>What truly sets Bali apart is its unique Hindu culture, a rarity in predominantly Muslim Indonesia. The island is dotted with over 20,000 temples, each more ornate than the last, where daily offerings of flowers and incense create a constant spiritual ambiance. Traditional dance performances, elaborate ceremonies, and ancient rituals are woven into the fabric of daily life, offering visitors a glimpse into a culture that has remained remarkably intact despite modern tourism.</p>
+                <p>Beyond its spiritual richness, Bali has evolved into a global hub for wellness, yoga, and holistic living. Ubud, the cultural heart of the island, is renowned for its yoga retreats, organic cafés, and healing centers. Meanwhile, coastal areas like Seminyak and Canggu have become playgrounds for surfers, digital nomads, and sun-seekers, offering world-class beaches, vibrant nightlife, and an international culinary scene that rivals any cosmopolitan city.</p>
+                <p>The island's diverse landscapes range from the volcanic peaks of Mount Batur and Mount Agung to lush jungles filled with hidden waterfalls, from black sand beaches in the north to the white sand shores of the south. Whether you're seeking adventure, relaxation, cultural immersion, or spiritual awakening, Bali delivers an experience that touches the soul and leaves visitors forever changed.</p>
+            </div>
+
+            <div class="photo-gallery">
+                <div class="photo-card">
+                    <img src="https://d2rdhxfof4qmbb.cloudfront.net/wp-content/uploads/2023/12/theworldtravelguy.com_.jpg" alt="Bali temple">
+                    <div class="photo-caption">Tanah Lot Temple - Iconic sea temple at sunset</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://static.mybalitrips.com/media/45610/jatiluwih.jpg" alt="Rice terraces">
+                    <div class="photo-caption">Tegallalang Rice Terraces - UNESCO heritage site</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://balirescentre.com/wp-content/uploads/2025/03/64feb723-561b-43a9-b16e-6b5cdd4b40fd.webp" alt="Ubud">
+                    <div class="photo-caption">Sacred Monkey Forest Sanctuary in Ubud</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://in.musafir.com/uploads/5_Most_beautiful_beaches_in_India_6ac2641a85.jpg" alt="Beach">
+                    <div class="photo-caption">Pristine beaches with crystal clear waters</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://d1bv4heaa2n05k.cloudfront.net/user-images/1444210926451/friday-shutterstock-279354293small_main_1444210943240.jpeg" alt="Pura Ulun Danu">
+                    <div class="photo-caption">Pura Ulun Danu Bratan - Temple on the lake</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://media-cdn.tripadvisor.com/media/attractions-splice-spp-720x480/10/46/4c/31.jpg" alt="Mount Batur">
+                    <div class="photo-caption">Mount Batur sunrise trek experience</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://media.istockphoto.com/id/938016384/photo/showing-traditional-balinese-male-and-female-ceremonial-clothing-and-religious-offerings-as-a.jpg?s=612x612&w=0&k=20&c=FDbCm_MN6QurXIZmSiCSYrp6qGS7L3h_0yedRJFwx-U=" alt="Balinese offerings">
+                    <div class="photo-caption">Traditional Balinese temple offerings</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://www.kkday.com/en/blog/wp-content/uploads/tegenungan.webp" alt="Waterfall">
+                    <div class="photo-caption">Tegenungan Waterfall - Hidden jungle paradise</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://media.cnn.com/api/v1/images/stellar/prod/130624174959-50-surf-spots-the-box.jpg?q=w_2365,h_1571,x_0,y_0,c_fill" alt="Surfing">
+                    <div class="photo-caption">World-class surf breaks along the coast</div>
+                </div>
+                <div class="photo-card">
+                    <img src="https://media.istockphoto.com/id/1152941881/photo/bali-indonesia-traditional-balinese-architecture-view-of-landmark-temple-gates-in-northern.jpg?s=612x612&w=0&k=20&c=gstXrgswTlCrAvgc7mO8WYzpRY2G2A2CQkqTdMEJJ70=" alt="Gates">
+                    <div class="photo-caption">Traditional Balinese temple gates</div>
+                </div>
+            </div>
+
+            <div class="highlights">
+                <h3>Top Attractions & Must-See Landmarks</h3>
+                <ul>
+                    <li>Tanah Lot Temple - Stunning offshore temple dating back to 16th century</li>
+                    <li>Tegallalang Rice Terraces - Iconic emerald green landscapes</li>
+                    <li>Ubud Monkey Forest - Sacred sanctuary with over 700 monkeys</li>
+                    <li>Mount Batur - Active volcano with spectacular sunrise treks</li>
+                    <li>Uluwatu Temple - Clifftop temple with traditional Kecak dance performances</li>
+                    <li>Tirta Empul Temple - Holy spring water temple for purification rituals</li>
+                    <li>Seminyak Beach - Trendy beach area with upscale restaurants and boutiques</li>
+                    <li>Nusa Penida - Dramatic island with stunning coastal cliffs</li>
+                    <li>Besakih Temple - Bali's largest and holiest temple complex</li>
+                    <li>Tegenungan Waterfall - Accessible jungle waterfall near Ubud</li>
+                    <li>Campuhan Ridge Walk - Scenic jungle trek in Ubud</li>
+                    <li>Jatiluwih Rice Terraces - Expansive UNESCO World Heritage site</li>
+                </ul>
+            </div>
+
+            <div class="additional-info">
+                <div class="info-section">
+                    <h3>🍽️ Culinary Experience</h3>
+                    <ul>
+                        <li>Nasi Goreng - Indonesia's famous fried rice</li>
+                        <li>Babi Guling - Traditional Balinese roast pork</li>
+                        <li>Satay - Grilled meat skewers with peanut sauce</li>
+                        <li>Lawar - Spiced meat and vegetable mix</li>
+                        <li>Fresh seafood at Jimbaran Bay</li>
+                        <li>Organic cafes and vegan restaurants in Ubud</li>
+                        <li>Traditional warungs serving authentic local cuisine</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🧘 Wellness & Activities</h3>
+                    <ul>
+                        <li>Yoga retreats and studios throughout the island</li>
+                        <li>Traditional Balinese massage and spa treatments</li>
+                        <li>Surfing lessons for all skill levels</li>
+                        <li>Scuba diving and snorkeling excursions</li>
+                        <li>Mount Batur sunrise trekking</li>
+                        <li>White water rafting on Ayung River</li>
+                        <li>Meditation and spiritual healing centers</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🎨 Culture & Arts</h3>
+                    <ul>
+                        <li>Traditional Balinese dance performances</li>
+                        <li>Gamelan music concerts</li>
+                        <li>Art galleries and museums in Ubud</li>
+                        <li>Batik and silver jewelry workshops</li>
+                        <li>Temple ceremonies and festivals</li>
+                        <li>Wood carving and stone sculpture villages</li>
+                        <li>Traditional cooking classes</li>
+                    </ul>
+                </div>
+
+                <div class="info-section">
+                    <h3>🚗 Getting Around</h3>
+                    <ul>
+                        <li>Scooter rentals - most popular option</li>
+                        <li>Private drivers for day tours</li>
+                        <li>Grab and Gojek ride-sharing apps</li>
+                        <li>Bemo - traditional local minibuses</li>
+                        <li>Bicycle rentals in Ubud and Sanur</li>
+                        <li>Fast boats to nearby islands</li>
+                        <li>Airport transfers and shuttle services</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="description">
+                <h3>Best Time to Visit</h3>
+                <p><strong>Dry Season (April-October):</strong> This is considered the best time to visit Bali with sunny days, low humidity, and minimal rainfall. Perfect for beach activities, outdoor adventures, and temple exploration. Temperatures range from 27-30°C. Peak tourist season occurs during July-August and around Christmas.</p>
+                <p><strong>Wet Season (November-March):</strong> While it rains more frequently, showers are usually short and the island remains lush and green. You'll encounter fewer tourists and better accommodation rates. January and February see the most rainfall, but mornings are often clear and beautiful.</p>
+                <p><strong>Shoulder Season (April-May, September-October):</strong> These months offer the perfect balance - good weather with fewer crowds and more reasonable prices. Ideal for travelers seeking a more authentic and peaceful Bali experience.</p>
+                <p><strong>Festival Periods:</strong> Nyepi (Balinese New Year) typically falls in March and is a unique time to experience the island's spiritual side, though everything closes for a day of silence. Galungan and Kuningan festivals occur every 210 days and showcase elaborate temple decorations and ceremonies.</p>
+            </div>
+
+            <div class="description">
+                <h3>Interesting Facts About Bali</h3>
+                <p>🏝️ Despite being a small island, Bali has its own unique Hindu culture that differs significantly from Indian Hinduism, blending Hindu, Buddhist, and animist beliefs.</p>
+                <p>🌋 Bali has four active volcanoes, with Mount Agung being the highest point at 3,031 meters and considered the most sacred mountain on the island.</p>
+                <p>🎭 The Barong dance, depicting the eternal battle between good and evil, has been performed for centuries and remains a central part of Balinese cultural identity.</p>
+                <p>🍃 Balinese people make thousands of offerings daily called "canang sari" - small palm leaf baskets filled with flowers, incense, and food for the gods and spirits.</p>
+                <p>🏄 Bali is one of the world's premier surfing destinations, with breaks suitable for all levels from beginners at Kuta to expert waves at Uluwatu and Padang Padang.</p>
+                <p>👔 Traditional Balinese clothing is required when entering temples - sarongs and sashes are often provided, but visitors should dress modestly out of respect.</p>
+                <p>🌾 The subak, Bali's ancient water management system for rice cultivation, is over 1,000 years old and recognized as a UNESCO World Heritage site for its social, religious, and ecological significance.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; Wanderlust Travel Guide</p>
+        <p>Om Swastiastu - May Peace Be With You</p>
+    </footer>
+
+</body>
+</html>
